@@ -1,0 +1,12 @@
+ MODULO ARITHMATIC
+
+ 1. CONGURENT
+    -> if a%x == b%x , then a =~ (congurent) to b
+ 2. 
+    -> if a and b are congurant,then
+        (a-b)%x = 0
+        (a-b) is divisible by x
+
+3. 
+    if a*b = c;
+    then a(mod N) * b(mod N) = c(mod N);
