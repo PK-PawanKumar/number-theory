@@ -1,65 +1,89 @@
 // // matrix multiplication
 // // basic
 
-// #include <iostream>
-// using namespace std;
-// int r1,c1;
+#include <iostream>
+using namespace std;
 
-// void matrixMultiply(int *m1, int I, int r1, int c1,int power)
-// {
-//     int result[r1][c1],ans=0;
-//     while(power--)
-//     {
-//         for (int i = 0; i < r1; i++)
-//         {
-//             for (int j = 0; j < c1; j++)
-//             {
-//                 for(int k=0;k<c1;k++)
-//                 {
-//                     ans+=m1[i][k]*m1[k][j];
-//                 }
-//             }
-//         }
-//     }
-    
-// }
+// print matrix
+void print_matrix(int r, int c, int *m)
+{
+    for (int i = 0; i < r; i++)
+    {
+        for (int j = 0; j < c; j++)
+        {
+            cout << *((m + i * c) + j) << " ";
+        }
+        cout << endl;
+    }
+}
 
-// void matrixExponentiation()
-// {
-//     int m1[r1][c1], Id[r1][c1];
+// main function
+int main()
+{
+    //matrix 1
+    int row1, col1;
+    cout << "enter row and column size of matrix1 : " << endl;
+    cout << "row : ";
+    cin >> row1;
+    cout << "col : ";
+    cin >> col1;
+    int matrix1[row1][col1];
+    cout << "enter " << row1 * col1 << " element of matrix : \n";
+    for (int i = 0; i < row1; i++)
+    {
+        for (int j = 0; j < col1; j++)
+        {
+            cout << "element [" << i << "][" << j << "] :";
+            cin >> matrix1[i][j];
+        }
+    }
 
-//     // taking input as elements of matrix 1
-//     cout << "enter " << r1 * c1 << " elements of matrix 1 : ";
-//     for (int i = 0; i < r1; i++)
-//     {
-//         for (int j = 0; j < c1; j++)
-//         {
-//             cin >> m1[i][j];
-//         }
-//     }
+    //matric 2
+    int row2, col2;
+    cout << "enter row and column size of matrix2 : " << endl;
+    cout << "row : ";
+    cin >> row2;
+    cout << "col : ";
+    cin >> col2;
+    int matrix2[row2][col2];
+    cout << "enter " << row2 * col2 << " element of matrix : \n";
+    for (int i = 0; i < row2; i++)
+    {
+        for (int j = 0; j < col2; j++)
+        {
+            cout << "element [" << i << "][" << j << "] :";
+            cin >> matrix2[i][j];
+        }
+    }
 
-//     // identity matrix
-//     for (int i = 0; i < r1; i++)
-//     {
-//         for (int j = 0; j < c1; j++)
-//         {
-//             cin >> m1[i][j];
-//         }
-//     }
+    // print two matrices
+    cout << "matrix 1 :\n";
+    print_matrix(row1, col1, (int *)matrix1);
+    cout << "matrix 2 :\n";
+    print_matrix(row2, col2, (int *)matrix2);
 
-//     int power;
-//     cout << "enter power : ";
-//     cin >> power;
-//     // basic method
-//     matrixMultiply(&m1,Id[0][0], r1, c1,power);
-// }
+    if (col1 != row2)
+    {
+        cout << "multiplication not possible!\n";
+    }
 
-// int main()
-// {
-//     cout << "enter no of row & column of matrix : ";
-//     cin >> r1 >> c1;
-//     matrixExponentiation();
-//     return 0;
-// }
-
-// incomplete
+    else
+    {
+        int result[row1][col2];
+        for (int i = 0; i < row1; i++)
+        {
+            for (int j = 0; j < col2; j++)
+            {
+                int ans = 0;
+                for (int k = 0; k < col1; k++)
+                {
+                    ans += matrix1[i][k] * matrix2[k][j];   // formula
+                }
+                result[i][j] = ans;
+            }
+        }
+        // print  matrix product :
+        cout << "matrix1 x matrix2 :\n";
+        print_matrix(row1, col2, (int *)result);
+    }
+}
